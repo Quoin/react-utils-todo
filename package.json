@@ -10,7 +10,7 @@
     "eslint:client": "eslint --fix --config=.eslintrc.client.json src",
     "less": "lessc src/style.less docs/style.css",
     "postless": "uglifycss --output docs/style.min.css docs/style.css",
-    "prebuild": "npm run clean",
+    "prebuild": "npm run clean && npm run check",
     "build": "webpack",
     "postbuild": "npm run cp && npm run less",
     "prebuild:dev": "npm run clean",

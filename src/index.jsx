@@ -7,7 +7,8 @@ import {
 } from '@quoin/react-utils';
 import '@quoin/react-utils-bs3';
 
-import App, { INIT_TYPE, reducers } from './app';
+import App, { INIT_TYPE } from './app';
+import reducers from './reducers';
 
 const store = createStore(reducers, fromJS({}), [], process.env.NODE_ENV === 'development', INIT_TYPE);
 

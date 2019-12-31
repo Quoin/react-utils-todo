@@ -1,10 +1,20 @@
 import {
-    boundComponent
+    boundComponent,
+    useDispatch,
+    useSelector
 } from '@quoin/react-utils';
 
 import Component from './component';
+import { orchestrators, selectors } from './flux';
 
-const getComponentProps = (props) => ({});
+const getComponentProps = (props) => {
+    const dispatch = useDispatch();
+
+    return {
+        add: (value) => orchestrators.add(dispatch, value),
+        tasks: useSelector(selectors.tasks)
+    };
+};
 
 const propsTypes = {};
 
