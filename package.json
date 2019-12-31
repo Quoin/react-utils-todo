@@ -1,0 +1,66 @@
+{
+  "name": "@quoin/react-utils-todo",
+  "version": "1.0.0",
+  "description": "TODO list example with react-utils library",
+  "scripts": {
+    "clean": "rimraf docs/",
+    "cp": "cp src/index.html node_modules/react/umd/react.production.min.js node_modules/bootstrap/dist/js/bootstrap.min.js* node_modules/bootstrap/dist/css/bootstrap.min.css* node_modules/react-bootstrap/dist/react-bootstrap.min.js node_modules/react-dom/umd/react-dom.production.min.js docs/",
+    "less": "lessc src/style.less docs/style.css",
+    "postless": "uglifycss --output docs/style.min.css docs/style.css",
+    "prebuild": "npm run clean",
+    "build": "webpack",
+    "postbuild": "npm run cp && npm run less",
+    "prebuild:dev": "npm run clean",
+    "build:dev": "webpack --mode=development",
+    "postbuild:dev": "npm run cp && npm run less"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Quoin/react-utils-todo.git"
+  },
+  "keywords": [
+    "Quoin",
+    "React",
+    "Utils",
+    "TODO",
+    "list"
+  ],
+  "author": {
+    "name": "Hữu Ðà Trần",
+    "email": "huuda.tran@quoininc.com",
+    "url": "https://www.quoininc.com/staff/huu-da-tran/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Quoin/react-utils-todo/issues"
+  },
+  "homepage": "https://github.com/Quoin/react-utils-todo#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-react": "^7.7.4",
+    "@babel/register": "^7.7.7",
+    "@quoin/react-utils": "0.0.4",
+    "@quoin/react-utils-bs3": "^1.0.0",
+    "babel-loader": "^8.0.6",
+    "bootstrap": "^3.4.1",
+    "classnames": "^2.2.6",
+    "immutable": "^3.8.2",
+    "jquery": "^3.4.1",
+    "jscpd": "^2.0.16",
+    "less": "^3.10.3",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-bootstrap": "^0.33.1",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.1.3",
+    "redux": "^4.0.5",
+    "redux-concatenate-reducers": "^1.0.0",
+    "redux-logger": "^3.0.6",
+    "rimraf": "^3.0.0",
+    "uglifycss": "0.0.29",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}
