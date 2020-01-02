@@ -5,3 +5,12 @@
   background-color: lightgray;
   padding: 40px 15px 15px 15px;
 }
+.quoin-react-utils-todo-task:nth-child(even) {
+  background-color: ghostwhite;
+}
+.quoin-react-utils-todo-task > .row > .value {
+  padding: 15px 15px 15px 30px;
+}
+.quoin-react-utils-todo-tasks {
+  background-color: whitesmoke;
+}

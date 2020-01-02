@@ -3,10 +3,12 @@ import {
     PropTypes
 } from '@quoin/react-utils';
 
+import Task from './../task';
+
 import { NAME } from './constants';
 
 const Component = (props) => {
-    const tasks = props.tasks.map((task, index) => <div key={index}>{task.value}</div>);
+    const tasks = props.tasks.map((task, index) => <Task key={index} task={task} />);
 
     return (
         <div className="quoin-react-utils-todo-tasks">
