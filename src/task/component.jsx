@@ -1,5 +1,6 @@
 import {
     Col,
+    Glyphicon,
     Row
 } from 'react-bootstrap';
 
@@ -16,6 +17,9 @@ const Component = (props) => {
           <Row>
             <Col className="value" xs={8}>
               {props.task.value}
+            </Col>
+            <Col className="actions" xs={4}>
+              <Glyphicon glyph="trash" onClick={() => props.task.remove()} />
             </Col>
           </Row>
         </div>
