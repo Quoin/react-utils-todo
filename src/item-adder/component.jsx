@@ -16,7 +16,9 @@ const Component = (props) => {
 
     const formSubmit = (e) => {
         e.preventDefault();
-        props.submit();
+        if (props.value) {
+            props.submit();
+        }
     };
 
     return (
