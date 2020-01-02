@@ -13,18 +13,18 @@ import namespace from './namespace';
 
 const actions = namespacedActions(namespace, [
     'ADD',
-    'INIT_TYPE'
+    'INIT_TYPE',
+    'REMOVE'
 ]);
 
 const actionCreators = Object.freeze({
-    add: (value) => actionCreator(actions.ADD, {
-        value,
-        created: Date.now()
-    })
+    add: (value) => actionCreator(actions.ADD, { value }),
+    remove: (index) => actionCreator(actions.REMOVE, { index })
 });
 
 export const orchestrators = Object.freeze({
-    add: (dispatch, value) => dispatch(actionCreators.add(value))
+    add: (dispatch, value) => dispatch(actionCreators.add(value)),
+    remove: (dispatch, index) => dispatch(actionCreators.remove(index))
 });
 
 export const reducers = concatenateReducers([{
@@ -33,8 +33,20 @@ export const reducers = concatenateReducers([{
 }, {
     actions: [ actions.ADD ],
     reducer: (state, action) => {
-        const tasks = getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS);
-        const newTasks = tasks.concat(fromJS([ action.payload ]));
+        const tasks = getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS, fromJS([]));
+        const newTasks = tasks.concat(fromJS([{
+            value: action.payload.value,
+            created: Date.now()
+        }]));
+        return setSubstateAttribute(state, namespace, ATTRIBUTES.TASKS, newTasks);
+    }
+}, {
+    actions: [ actions.REMOVE ],
+    reducer: (state, action) => {
+        const tasks = getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS, fromJS([]));
+        const task = tasks.get(action.payload.index, fromJS({}));
+        const newTask = task.set('deleted', Date.now());
+        const newTasks = tasks.set(action.payload.index, newTask);
         return setSubstateAttribute(state, namespace, ATTRIBUTES.TASKS, newTasks);
     }
 }]);
