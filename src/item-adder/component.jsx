@@ -1,5 +1,6 @@
 import {
     Button,
+    Form,
     FormControl,
     FormGroup,
     InputGroup
@@ -13,8 +14,13 @@ import {
 const Component = (props) => {
     const disabled = !Boolean(props.value);
 
+    const formSubmit = (e) => {
+        e.preventDefault();
+        props.submit();
+    };
+
     return (
-        <div className="quoin-react-utils-todo-item-adder">
+        <Form className="quoin-react-utils-todo-item-adder" onSubmit={formSubmit}>
           <FormGroup>
             <InputGroup>
               <FormControl type="text" value={props.value} onChange={(e) => props.set(e.target.value)} />
@@ -23,7 +29,7 @@ const Component = (props) => {
               </InputGroup.Button>
             </InputGroup>
           </FormGroup>
-        </div>
+        </Form>
     );
 };
 
