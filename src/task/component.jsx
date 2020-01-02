@@ -19,6 +19,7 @@ const Component = (props) => {
               {props.task.value}
             </Col>
             <Col className="actions" xs={4}>
+              <Glyphicon glyph="ok" onClick={() => props.task.complete()} />
               <Glyphicon glyph="trash" onClick={() => props.task.remove()} />
             </Col>
           </Row>
