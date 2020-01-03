@@ -52,7 +52,7 @@
     "@babel/preset-react": "^7.7.4",
     "@babel/register": "^7.7.7",
     "@quoin/eslint-config-quoin": "^0.3.3",
-    "@quoin/react-utils": "0.0.4",
+    "@quoin/react-utils": "^0.0.5",
     "@quoin/react-utils-bs3": "^1.0.0",
     "babel-loader": "^8.0.6",
     "bootstrap": "^3.4.1",

@@ -4,12 +4,15 @@ import {
     actionCreator,
     concatenateReducers,
     getSubstateAttribute,
+    INIT_TYPE,
     namespacedActions,
+    setSubstate,
     setSubstateAttribute
 } from '@quoin/react-utils';
 
 import { ATTRIBUTES } from './constants';
 import namespace from './namespace';
+import { AppRecord, TaskRecord } from './records';
 
 const actions = namespacedActions(namespace, [
     'ADD',
@@ -31,40 +34,34 @@ export const orchestrators = Object.freeze({
 });
 
 export const reducers = concatenateReducers([{
-    actions: [ actions.INIT_TYPE ],
-    reducer: (state, action) => setSubstateAttribute(state, namespace, ATTRIBUTES.TASKS, fromJS([]))
+    actions: [ INIT_TYPE ],
+    reducer: (state, action) => setSubstate(state, namespace, AppRecord())
 }, {
     actions: [ actions.ADD ],
     reducer: (state, action) => {
-        const tasks = getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS, fromJS([]));
-        const newTasks = tasks.concat(fromJS([{
+        const tasks = getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS);
+        const newTasks = tasks.concat(fromJS([ TaskRecord({
             value: action.payload.value,
             created: Date.now()
-        }]));
+        }) ]));
         return setSubstateAttribute(state, namespace, ATTRIBUTES.TASKS, newTasks);
     }
 }, {
     actions: [ actions.COMPLETE ],
     reducer: (state, action) => {
-        const tasks = getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS, fromJS([]));
-        const task = tasks.get(action.payload.index, fromJS({}));
-        const newTask = task.set('completed', Date.now());
-        const newTasks = tasks.set(action.payload.index, newTask);
+        const tasks = getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS);
+        const newTasks = tasks.update(action.payload.index, (task) => task.set('completed', Date.now()));
         return setSubstateAttribute(state, namespace, ATTRIBUTES.TASKS, newTasks);
     }
 }, {
     actions: [ actions.REMOVE ],
     reducer: (state, action) => {
-        const tasks = getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS, fromJS([]));
-        const task = tasks.get(action.payload.index, fromJS({}));
-        const newTask = task.set('deleted', Date.now());
-        const newTasks = tasks.set(action.payload.index, newTask);
+        const tasks = getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS);
+        const newTasks = tasks.update(action.payload.index, (task) => task.set('deleted', Date.now()));
         return setSubstateAttribute(state, namespace, ATTRIBUTES.TASKS, newTasks);
     }
 }]);
 
 export const selectors = Object.freeze({
-    tasks: (state) => getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS, fromJS([])).toJS()
+    tasks: (state) => getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS).toJS()
 });
-
-export const INIT_TYPE = actions.INIT_TYPE;
