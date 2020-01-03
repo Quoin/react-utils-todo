@@ -6,7 +6,7 @@ module.exports = (env, argv) => ({
     devtool: 'source-map',
     cache: false,
     entry: {
-        app: './src/index.jsx',
+        app: './src/index.jsx'
     },
     externals: {
         'react': 'React',
@@ -45,8 +45,7 @@ module.exports = (env, argv) => ({
     plugins: [
         new CopyWebpackPlugin(
             (env && env.prod)
-            ?
-                [
+                ? [
                     { from: 'src/index.html', to: '' },
                     { from: 'node_modules/bootstrap/dist/css/bootstrap.min.css', to: 'css/bootstrap.css' },
                     { from: 'node_modules/bootstrap/dist/fonts/*', to: 'fonts', flatten: true },
@@ -55,8 +54,7 @@ module.exports = (env, argv) => ({
                     { from: 'node_modules/react-dom/umd/react-dom.production.min.js', to: 'js/react-dom.js' },
                     { from: 'node_modules/redux/dist/redux.min.js', to: 'js/redux.js' }
                 ]
-            :
-                [
+                : [
                     { from: 'src/index.html', to: '' },
                     { from: 'node_modules/bootstrap/dist/css/bootstrap.css', to: 'css/bootstrap.css' },
                     { from: 'node_modules/bootstrap/dist/fonts/*', to: 'fonts', flatten: true },
