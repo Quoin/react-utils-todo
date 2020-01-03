@@ -7,10 +7,10 @@ import {
 } from '@quoin/react-utils';
 import '@quoin/react-utils-bs3';
 
-import App, { INIT_TYPE } from './app';
+import App from './app';
 import reducers from './reducers';
 
-const store = createStore(reducers, fromJS({}), [], process.env.NODE_ENV === 'development', INIT_TYPE);
+const store = createStore(reducers, fromJS({}), [], process.env.NODE_ENV === 'development');
 
 const placeholder = document.querySelector('#react-app-placeholder');
 if (placeholder) {
