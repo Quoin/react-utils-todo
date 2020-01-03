@@ -3,6 +3,7 @@ import {
     PropTypes
 } from '@quoin/react-utils';
 
+import { TASKS } from './../shapes';
 import Task from './../task';
 
 import { NAME } from './constants';
@@ -27,8 +28,8 @@ const Component = (props) => {
 
 Component.displayName = NAME;
 
-Component.propsTypes = {
-    tasks: PropTypes.array.isRequired
+Component.propTypes = {
+    tasks: TASKS.isRequired
 };
 
 export default errorBoundary(Component);

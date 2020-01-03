@@ -12,6 +12,7 @@ import {
 
 import ItemAdder from './../item-adder';
 import Tasks from './../tasks';
+import { TASKS } from './../shapes';
 
 import { NAME } from './constants';
 
@@ -58,9 +59,9 @@ const Component = (props) => {
 
 Component.displayName = NAME;
 
-Component.propsTypes = {
+Component.propTypes = {
     add: PropTypes.func.isRequired,
-    tasks: PropTypes.array.isRequired
+    tasks: TASKS
 };
 
 export default errorBoundary(Component);

@@ -35,7 +35,7 @@ const Component = (props) => {
     );
 };
 
-Component.propsTypes = {
+Component.propTypes = {
     set: PropTypes.func.isRequired,
     submit: PropTypes.func.isRequired,
     value: PropTypes.string

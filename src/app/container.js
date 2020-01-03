@@ -22,8 +22,8 @@ const getComponentProps = (props) => {
     };
 };
 
-const propsTypes = {};
+const propTypes = {};
 
 const defaultProps = {};
 
-export default boundComponent(Component, getComponentProps, propsTypes, defaultProps);
+export default boundComponent(Component, getComponentProps, propTypes, defaultProps);

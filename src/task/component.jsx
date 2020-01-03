@@ -9,6 +9,8 @@ import {
     PropTypes
 } from '@quoin/react-utils';
 
+import { TASK } from './../shapes';
+
 import { NAME } from './constants';
 
 const Component = (props) => {
@@ -27,8 +29,8 @@ const Component = (props) => {
     );
 };
 
-Component.propsTypes = {
-    task: PropTypes.object.isRequired
+Component.propTypes = {
+    task: TASK.isRequired
 };
 
 Component.displayName = NAME;
