@@ -1,6 +1,7 @@
 /.babelrc
 /.eslintrc.*
 /.nycrc
+/.travis.yml
 /quoin-react-utils-todo-*.tgz
 /src
 /reports

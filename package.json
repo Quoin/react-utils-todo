@@ -21,6 +21,7 @@
     "postbuild:dev": "npm run less",
     "test": "npm run test:unit",
     "test:unit": "mocha --require @babel/register --require src/setup.test.js \"src/**/*.unit.test.js?(x)\"",
+    "coveralls": "cat reports/coverage.unit/lcov.info | coveralls",
     "coverage": "npm run coverage:unit",
     "coverage:unit": "nyc --report-dir=reports/coverage.unit npm run test:unit"
   },
@@ -59,6 +60,7 @@
     "bootstrap": "^3.4.1",
     "classnames": "^2.2.6",
     "copy-webpack-plugin": "^5.1.1",
+    "coveralls": "^3.0.9",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^6.8.0",
