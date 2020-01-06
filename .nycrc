@@ -1,0 +1,31 @@
+{
+  "all": true,
+  "cache": false,
+  "temp-dir": "./reports/nyc_output",
+  "check-coverage": false,
+  "require": [
+    "@babel/register"
+  ],
+  "exclude": [
+    "docs/",
+    "reports/",
+    "src/**/*.test.js",
+    "src/**/*.test.jsx",
+    "webpack.config.js"
+  ],
+  "extension": [
+    ".js",
+    ".jsx"
+  ],
+  "reporter": [
+    "cobertura",
+    "lcov",
+    "html"
+  ],
+  "watermarks": {
+    "statements": [50, 80],
+    "lines": [50, 80],
+    "functions": [50, 80],
+    "branches": [50, 80]
+  }
+}

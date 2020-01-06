@@ -1,0 +1,21 @@
+{
+  "root": true,
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "extends": [
+    "@quoin/eslint-config-quoin/client-test",
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "globals": {
+    "React": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}

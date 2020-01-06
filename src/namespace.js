@@ -1,5 +1,5 @@
-import {
-    namespace
-} from '@quoin/react-utils';
+import { namespace } from '@quoin/react-utils';
 
-export default (path) => namespace(`REACT-UTILS-TODO-LIST.${path}`);
+import { ROOT_NAMESPACE } from './constants';
+
+export default (path) => namespace(`${ROOT_NAMESPACE}.${path}`);
