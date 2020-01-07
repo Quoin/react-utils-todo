@@ -1,16 +1,16 @@
+import { List } from 'immutable';
 import {
     errorBoundary,
     PropTypes
 } from '@quoin/react-utils';
 
-import { TASKS } from './../shapes';
 import Task from './../task';
 
 import { NAME } from './constants';
 
 const Component = (props) => {
     const tasks = props.tasks.map((task, index) => {
-        if (task.deleted) {
+        if (task.removed) {
             return null;
         } else if (task.completed) {
             return null;
@@ -29,7 +29,7 @@ const Component = (props) => {
 Component.displayName = NAME;
 
 Component.propTypes = {
-    tasks: TASKS.isRequired
+    tasks: PropTypes.instanceOf(List).isRequired
 };
 
 export default errorBoundary(Component);

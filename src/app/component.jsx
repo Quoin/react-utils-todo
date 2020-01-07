@@ -1,3 +1,4 @@
+import { List } from 'immutable';
 import {
     Col,
     Grid,
@@ -12,7 +13,6 @@ import {
 
 import ItemAdder from './../item-adder';
 import Tasks from './../tasks';
-import { TASKS } from './../shapes';
 
 import { NAME } from './constants';
 
@@ -61,7 +61,7 @@ Component.displayName = NAME;
 
 Component.propTypes = {
     add: PropTypes.func.isRequired,
-    tasks: TASKS
+    tasks: PropTypes.instanceOf(List)
 };
 
 export default errorBoundary(Component);

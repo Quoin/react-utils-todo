@@ -9,7 +9,7 @@ import {
     PropTypes
 } from '@quoin/react-utils';
 
-import { TASK } from './../shapes';
+import { TaskRecord } from './../records';
 
 import { NAME } from './constants';
 
@@ -30,7 +30,7 @@ const Component = (props) => {
 };
 
 Component.propTypes = {
-    task: TASK.isRequired
+    task: PropTypes.instanceOf(TaskRecord).isRequired
 };
 
 Component.displayName = NAME;

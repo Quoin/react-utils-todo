@@ -10,11 +10,11 @@ import { orchestrators, selectors } from './flux';
 const getComponentProps = (props) => {
     const dispatch = useDispatch();
 
-    const tasks = useSelector(selectors.tasks);
-    tasks.forEach((task, index) => {
-        task.remove = () => orchestrators.remove(dispatch, index);
-        task.complete = () => orchestrators.complete(dispatch, index);
-    });
+    const tasks = useSelector(selectors.tasks)
+        .map((task, index) => task
+            .set('complete', () => orchestrators.complete(dispatch, index))
+            .set('remove', () => orchestrators.remove(dispatch, index))
+        );
 
     return {
         add: (value) => orchestrators.add(dispatch, value),

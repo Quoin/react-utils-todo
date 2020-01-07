@@ -10,14 +10,14 @@ import {
     setSubstateAttribute
 } from '@quoin/react-utils';
 
-import { ATTRIBUTES } from './constants';
+import { ATTRIBUTES } from './../constants';
+import { AppRecord, TaskRecord } from './../records';
+
 import namespace from './namespace';
-import { AppRecord, TaskRecord } from './records';
 
 const actions = namespacedActions(namespace, [
     'ADD',
     'COMPLETE',
-    'INIT_TYPE',
     'REMOVE'
 ]);
 
@@ -40,7 +40,7 @@ export const reducers = concatenateReducers([{
     actions: [ actions.ADD ],
     reducer: (state, action) => {
         const tasks = getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS);
-        const newTasks = tasks.concat(fromJS([ TaskRecord({
+        const newTasks = tasks.concat(fromJS([ new TaskRecord({
             value: action.payload.value,
             created: Date.now()
         }) ]));
@@ -57,11 +57,11 @@ export const reducers = concatenateReducers([{
     actions: [ actions.REMOVE ],
     reducer: (state, action) => {
         const tasks = getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS);
-        const newTasks = tasks.update(action.payload.index, (task) => task.set('deleted', Date.now()));
+        const newTasks = tasks.update(action.payload.index, (task) => task.set('removed', Date.now()));
         return setSubstateAttribute(state, namespace, ATTRIBUTES.TASKS, newTasks);
     }
 }]);
 
 export const selectors = Object.freeze({
-    tasks: (state) => getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS).toJS()
+    tasks: (state) => getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS)
 });

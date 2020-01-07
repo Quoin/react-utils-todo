@@ -5,7 +5,7 @@ import * as moduleToTest from './constants';
 describe(`src/constants`, () => {
     it(`exports know properties`, () => {
         const clone = { ...moduleToTest };
-        verifyProperties(clone, null, [ 'ROOT_NAMESPACE' ]);
+        verifyProperties(clone, null, [ 'ATTRIBUTES', 'ROOT_NAMESPACE' ]);
         expect(clone).to.be.empty();
     });
 });
