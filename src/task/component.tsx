@@ -13,7 +13,11 @@ import { task as taskShape } from './../shapes';
 
 import { NAME } from './constants';
 
-const Component = (props) => {
+interface Props {
+    task: TaskRecord;
+};
+
+const Component = (props: Props) => {
     return (
         <div className="quoin-react-utils-todo-task">
           <Row>

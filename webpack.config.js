@@ -21,7 +21,9 @@ module.exports = (env, argv) => ({
     resolve: {
         extensions: [
             '.js',
-            '.jsx'
+            '.jsx',
+            '.ts',
+            '.tsx'
         ]
     },
     module: {
@@ -37,6 +39,18 @@ module.exports = (env, argv) => ({
                     ]
                 }
             }
+        }, {
+            test: /\.ts(x?)$/,
+            exclude: /node_modules/,
+            use: {
+                loader: 'ts-loader'
+            }
+        }, {
+            test: /\.js$/,
+            use: {
+                loader: 'source-map-loader'
+            },
+            enforce: 'pre'
         }]
     },
     optimization: {
