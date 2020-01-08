@@ -11,7 +11,7 @@ import {
 } from '@quoin/react-utils';
 
 import { ATTRIBUTES } from './../constants';
-import { AppRecord, TaskRecord } from './../records';
+import { App as AppRecord, Task as TaskRecord } from './../records';
 
 import namespace from './namespace';
 

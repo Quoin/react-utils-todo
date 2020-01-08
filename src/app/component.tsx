@@ -1,3 +1,4 @@
+import { List } from 'immutable';
 import {
     Col,
     Grid,
@@ -7,16 +8,24 @@ import {
 
 import {
     errorBoundary,
-    PropTypes
+    PropTypes,
+    React
 } from '@quoin/react-utils';
 
+import { ATTRIBUTES } from './../constants';
 import ItemAdder from './../item-adder';
+import { ITask } from './../records';
 import { tasks as tasksShape } from './../shapes';
 import Tasks from './../tasks';
 
 import { NAME } from './constants';
 
-const Component = (props) => {
+interface Props {
+  add: Function;
+  [ATTRIBUTES.TASKS]: List<ITask>;
+}
+
+const Component = (props: Props) => {
     return (
         <Grid>
           <Row>

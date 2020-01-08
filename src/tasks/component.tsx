@@ -2,7 +2,7 @@ import {
     errorBoundary
 } from '@quoin/react-utils';
 
-import { TaskRecord } from './../records';
+import { Task as TaskRecord } from './../records';
 import { tasks as TasksShape } from './../shapes';
 import Task from './../task';
 

@@ -3,7 +3,7 @@ import {
     PropTypes
 } from '@quoin/react-utils';
 
-import { TaskRecord } from './records';
+import { Task as TaskRecord } from './records';
 
 export const task = PropTypes.instanceOf(TaskRecord);
 
