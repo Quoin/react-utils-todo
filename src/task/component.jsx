@@ -5,11 +5,11 @@ import {
 } from 'react-bootstrap';
 
 import {
-    errorBoundary,
-    PropTypes
+    errorBoundary
 } from '@quoin/react-utils';
 
 import { TaskRecord } from './../records';
+import { task as taskShape } from './../shapes';
 
 import { NAME } from './constants';
 
@@ -30,7 +30,7 @@ const Component = (props) => {
 };
 
 Component.propTypes = {
-    task: PropTypes.instanceOf(TaskRecord).isRequired
+    task: taskShape.isRequired
 };
 
 Component.displayName = NAME;

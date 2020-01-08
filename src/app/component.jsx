@@ -1,4 +1,3 @@
-import { List } from 'immutable';
 import {
     Col,
     Grid,
@@ -12,6 +11,7 @@ import {
 } from '@quoin/react-utils';
 
 import ItemAdder from './../item-adder';
+import { tasks as tasksShape } from './../shapes';
 import Tasks from './../tasks';
 
 import { NAME } from './constants';
@@ -61,7 +61,7 @@ Component.displayName = NAME;
 
 Component.propTypes = {
     add: PropTypes.func.isRequired,
-    tasks: PropTypes.instanceOf(List)
+    tasks: tasksShape
 };
 
 export default errorBoundary(Component);

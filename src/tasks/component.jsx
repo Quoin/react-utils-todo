@@ -1,9 +1,9 @@
-import { List } from 'immutable';
 import {
-    errorBoundary,
-    PropTypes
+    errorBoundary
 } from '@quoin/react-utils';
 
+import { TaskRecord } from './../records';
+import { tasks as TasksShape } from './../shapes';
 import Task from './../task';
 
 import { NAME } from './constants';
@@ -29,7 +29,7 @@ const Component = (props) => {
 Component.displayName = NAME;
 
 Component.propTypes = {
-    tasks: PropTypes.instanceOf(List).isRequired
+    tasks: TasksShape
 };
 
 export default errorBoundary(Component);
