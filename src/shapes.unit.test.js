@@ -8,8 +8,8 @@ describe(`src/shapes`, () => {
     it(`exports known properties`, () => {
         const clone = { ...moduleToTest };
         verifyProperties(clone, null, [
-            'TASK',
-            'TASKS'
+            'task',
+            'tasks'
         ]);
     });
 });

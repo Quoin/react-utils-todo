@@ -13,14 +13,14 @@
     "eslint:node": "eslint --fix --config=.eslintrc.node.json *.js",
     "less": "lessc src/style.less docs/style.css",
     "postless": "uglifycss --output docs/style.min.css docs/style.css",
-    "prebuild": "npm run clean && npm run check",
+    "prebuild": "npm run clean && npm run check && npm test",
     "build": "webpack --env.prod",
     "postbuild": "npm run less",
     "prebuild:dev": "npm run clean",
     "build:dev": "webpack",
     "postbuild:dev": "npm run less",
     "test": "npm run test:unit",
-    "test:unit": "mocha --require @babel/register --require src/setup.test.js \"src/**/*.unit.test.js?(x)\"",
+    "test:unit": "mocha  \"src/**/*.unit.test.js?(x)\"",
     "coveralls": "cat reports/coverage.unit/lcov.info | coveralls",
     "coverage": "npm run coverage:unit",
     "coverage:unit": "nyc --report-dir=reports/coverage.unit npm run test:unit"
@@ -92,5 +92,11 @@
     "uglifycss": "0.0.29",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
+  },
+  "mocha": {
+    "require": [
+      "@babel/register",
+      "./src/setup.test.js"
+    ]
   }
 }
