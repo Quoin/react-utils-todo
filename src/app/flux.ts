@@ -1,4 +1,4 @@
-import { fromJS } from 'immutable';
+import { fromJS, Map } from 'immutable';
 
 import {
     actionCreator,
@@ -22,23 +22,23 @@ const actions = namespacedActions(namespace, [
 ]);
 
 const actionCreators = Object.freeze({
-    add: (value) => actionCreator(actions.ADD, { value }),
-    complete: (index) => actionCreator(actions.COMPLETE, { index }),
-    remove: (index) => actionCreator(actions.REMOVE, { index })
+    add: (value: string) => actionCreator(actions.ADD, { value }),
+    complete: (index: number) => actionCreator(actions.COMPLETE, { index }),
+    remove: (index: number) => actionCreator(actions.REMOVE, { index })
 });
 
 export const orchestrators = Object.freeze({
-    add: (dispatch, value) => dispatch(actionCreators.add(value)),
-    complete: (dispatch, index) => dispatch(actionCreators.complete(index)),
-    remove: (dispatch, index) => dispatch(actionCreators.remove(index))
+  add: (dispatch: Function, value: string) => dispatch(actionCreators.add(value)),
+    complete: (dispatch: Function, index: number) => dispatch(actionCreators.complete(index)),
+    remove: (dispatch: Function, index: number) => dispatch(actionCreators.remove(index))
 });
 
 export const reducers = concatenateReducers([{
     actions: [ INIT_TYPE ],
-    reducer: (state, action) => setSubstate(state, namespace, AppRecord())
+    reducer: (state: Map, action) => setSubstate(state, namespace, AppRecord())
 }, {
     actions: [ actions.ADD ],
-    reducer: (state, action) => {
+    reducer: (state: Map, action) => {
         const tasks = getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS);
         const newTasks = tasks.concat(fromJS([ new TaskRecord({
             value: action.payload.value,
@@ -48,14 +48,14 @@ export const reducers = concatenateReducers([{
     }
 }, {
     actions: [ actions.COMPLETE ],
-    reducer: (state, action) => {
+    reducer: (state: Map, action) => {
         const tasks = getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS);
         const newTasks = tasks.update(action.payload.index, (task) => task.set('completed', Date.now()));
         return setSubstateAttribute(state, namespace, ATTRIBUTES.TASKS, newTasks);
     }
 }, {
     actions: [ actions.REMOVE ],
-    reducer: (state, action) => {
+    reducer: (state: Map, action) => {
         const tasks = getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS);
         const newTasks = tasks.update(action.payload.index, (task) => task.set('removed', Date.now()));
         return setSubstateAttribute(state, namespace, ATTRIBUTES.TASKS, newTasks);
@@ -63,5 +63,5 @@ export const reducers = concatenateReducers([{
 }]);
 
 export const selectors = Object.freeze({
-    tasks: (state) => getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS)
+  tasks: (state: Map) => getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS)
 });

@@ -1,4 +1,4 @@
-import type { List, Record } from 'immutable';
+import { List, Record } from 'immutable';
 
 import { ATTRIBUTES } from './../constants';
 
@@ -10,7 +10,7 @@ export interface IApp {
 
 export default Record(
   {
-      [ATTRIBUTES.TASKS]: List();
+      [ATTRIBUTES.TASKS]: List()
   },
   "App"
 );
