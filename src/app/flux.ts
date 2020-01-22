@@ -1,17 +1,19 @@
-import { fromJS, Map } from 'immutable';
+import { fromJS } from 'immutable';
 
 import {
     actionCreator,
     concatenateReducers,
     getSubstateAttribute,
+    IAction,
     INIT_TYPE,
+    IState,
     namespacedActions,
     setSubstate,
     setSubstateAttribute
 } from '@quoin/react-utils';
 
 import { ATTRIBUTES } from './../constants';
-import { App as AppRecord, Task as TaskRecord } from './../records';
+import { App as AppRecord, Task as TaskRecord, ITask } from './../records';
 
 import namespace from './namespace';
 
@@ -35,10 +37,10 @@ export const orchestrators = Object.freeze({
 
 export const reducers = concatenateReducers([{
     actions: [ INIT_TYPE ],
-    reducer: (state: Map, action) => setSubstate(state, namespace, AppRecord())
+    reducer: (state: IState, action: IAction) => setSubstate(state, namespace, AppRecord())
 }, {
     actions: [ actions.ADD ],
-    reducer: (state: Map, action) => {
+    reducer: (state: IState, action: IAction) => {
         const tasks = getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS);
         const newTasks = tasks.concat(fromJS([ new TaskRecord({
             value: action.payload.value,
@@ -48,20 +50,20 @@ export const reducers = concatenateReducers([{
     }
 }, {
     actions: [ actions.COMPLETE ],
-    reducer: (state: Map, action) => {
+    reducer: (state: IState, action: IAction) => {
         const tasks = getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS);
-        const newTasks = tasks.update(action.payload.index, (task) => task.set('completed', Date.now()));
+        const newTasks = tasks.update(action.payload.index, (task: ITask) => task.set('completed', Date.now()));
         return setSubstateAttribute(state, namespace, ATTRIBUTES.TASKS, newTasks);
     }
 }, {
     actions: [ actions.REMOVE ],
-    reducer: (state: Map, action) => {
+    reducer: (state: IState, action: IAction) => {
         const tasks = getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS);
-        const newTasks = tasks.update(action.payload.index, (task) => task.set('removed', Date.now()));
+        const newTasks = tasks.update(action.payload.index, (task: ITask) => task.set('removed', Date.now()));
         return setSubstateAttribute(state, namespace, ATTRIBUTES.TASKS, newTasks);
     }
 }]);
 
 export const selectors = Object.freeze({
-  tasks: (state: Map) => getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS)
+  tasks: (state: IState) => getSubstateAttribute(state, namespace, ATTRIBUTES.TASKS)
 });

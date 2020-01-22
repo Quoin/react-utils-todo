@@ -1,3 +1,3 @@
 import namespace from './../namespace';
 
-export default (path) => namespace(`APP${path ? `.${path}` : ''}`);
+export default (path?: string) => namespace(`APP${path ? `.${path}` : ''}`);

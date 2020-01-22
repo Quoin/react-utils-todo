@@ -15,7 +15,7 @@ const getComponentProps = (props: any) => {
   const tasks = useSelector(selectors.tasks)
     .map((task: Task, index: number) => task
       .set('complete', () => orchestrators.complete(dispatch, index))
-      .set('remove', () => orchestrators.remove(dispatch, index))
+      .set('removeTask', () => orchestrators.remove(dispatch, index))
     );
 
   return {

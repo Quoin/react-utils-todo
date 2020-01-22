@@ -1,15 +1,17 @@
 {
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "allowUmdGlobalAccess": true,
     "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": true,
     "module": "commonjs",
+    "moduleResolution": "node",
     "target": "es6",
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
-      "@quoin/react-test-utils": [ "src/@types/quoin__react-test-utils" ],
-      "@quoin/react-utils": [ "src/@types/quoin__react-utils" ]
+      "@quoin/react-test-utils": [ "src/@types/quoin__react-test-utils" ]
     },
   },
   "include": [

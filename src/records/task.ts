@@ -1,28 +1,28 @@
 import { Record } from 'immutable';
 
-export interface ITask extends RecordFactory {
+export interface ITask extends Record<string, any> {
   value: string;
   created: number;
-  complete?: Function;
+  complete?: () => void;
   completed?: number;
-  remove?: Function;
+  removeTask?: () => void;
   removed?: number;
 }
 
-const Factory = Record<ITask>({
+const Factory = Record({
   value: '',
   created: 0,
-  complete: null,
+  complete: () => {},
   completed: 0,
-  remove: null,
+  removeTask: () => {},
   removed: 0
-});
+}, "TaskFactory");
 
 export default class Task extends Factory implements ITask {
   value: string;
   created: number;
-  complete: Function;
+  complete: () => void;
   completed: number;
-  remove: Function;
+  removeTask: () => void;
   removed: number;
 }

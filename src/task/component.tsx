@@ -26,7 +26,7 @@ const Component = (props: Props) => {
             </Col>
             <Col className="actions" xs={4}>
               <Glyphicon glyph="ok" onClick={() => props.task.complete()} />
-              <Glyphicon glyph="trash" onClick={() => props.task.remove()} />
+              <Glyphicon glyph="trash" onClick={() => props.task.removeTask()} />
             </Col>
           </Row>
         </div>
