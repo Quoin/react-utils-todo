@@ -73,7 +73,7 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-standard": "^4.0.1",
     "immutable": "^3.8.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jscpd": "^2.0.16",
     "less": "^3.10.3",
     "mkdirp": "^0.5.1",
